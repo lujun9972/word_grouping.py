@@ -7,7 +7,7 @@ def distance(group, s):
     if not group:
         return 0
     distances = list(edit_distance(s, seq)[0] if seq[0:2] == s[0:2] else 9999
-                     for seq in group)
+                     for seq in group)  # 前两个字母不同的单词不在一起
     return sum(distances) / len(distances)
 
 
@@ -27,7 +27,7 @@ def grouping(groups, s, accuracy=2):
 
 
 if __name__ == '__main__':
-    # words = sys.stdin.readlines()
+    # 1,2个字母组成的单词就不要参活了....
     words = (word.strip() for word in sys.stdin if len(word) > 2)
     words = sorted(words)
     groups = list()
