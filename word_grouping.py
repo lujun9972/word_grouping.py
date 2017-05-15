@@ -27,7 +27,8 @@ def grouping(groups, s, accuracy=2):
 
 
 if __name__ == '__main__':
-    words = sys.stdin.readlines()
+    # words = sys.stdin.readlines()
+    words = (word.strip() for word in sys.stdin if len(word) > 2)
     words = sorted(words)
     groups = list()
     for word in words:
