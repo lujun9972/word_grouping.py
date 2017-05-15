@@ -10,15 +10,16 @@ def distance(group, s):
     return sum(distances) / len(distances)
 
 
-def grouping(groups, s, expected=2):
+def grouping(groups, s):
     'grouping seq S into one of group in GROUPS'
     if not groups:
         groups.append([])
-    for group in groups:
-        d = distance(group, s)
-        if d <= expected:
-            group.append(s)
-            break
+    distances = list(distance(group, s) for group in groups)
+    min_distance = min(distances)
+    min_pos = distances.index(min_distance)
+    # print('min_distance=', min_distance, "min_pos=", min_pos)
+    if min_distance <= 2:
+        groups[min_pos].append(s)
     else:
         groups.append([s])
     return groups
